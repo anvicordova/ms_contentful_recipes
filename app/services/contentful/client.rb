@@ -18,7 +18,7 @@ module Contentful
     end
 
     def entries(content_type:, selected_fields: [])
-      entries = fetch(content_type, selected_fields)
+      entries = fetch(content_type:, selected_fields:)
 
       Response.new(
         items: entries[:items],
@@ -27,6 +27,7 @@ module Contentful
     end
 
     def fetch(content_type:, selected_fields: [])
+      debugger
       @client.fetch(
         endpoint: 'entries',
         params: {
