@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ListRecipesService
+class RecipesService
   def initialize
     @contentful_client = ::Contentful::Client.new
   end

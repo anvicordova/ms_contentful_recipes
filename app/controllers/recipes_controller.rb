@@ -2,6 +2,6 @@
 
 class RecipesController < ApplicationController
   def index
-    @recipes = ::ListRecipesService.new.call
+    @recipes = ::RecipesService.new.call
   end
 end
