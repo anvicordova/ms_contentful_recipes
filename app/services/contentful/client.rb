@@ -26,6 +26,8 @@ module Contentful
       )
     end
 
+    private
+
     def fetch(content_type:, selected_fields: [])
       @client.fetch(
         endpoint: 'entries',
