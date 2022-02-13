@@ -24,6 +24,8 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0.1'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do
