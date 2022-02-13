@@ -6,11 +6,11 @@ class ListRecipesService
   end
 
   def call
-    entries = @contentful_client.entries(
-      content_type: 'recipe'
+    response = ResponseHandler.new(
+      raw_response: @contentful_client.entries(
+        content_type: 'recipe'
+      )
     )
-
-    response = ResponseHandler.new(raw_response: entries)
     response.parse
     response.recipes
   end
