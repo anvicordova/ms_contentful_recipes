@@ -10,14 +10,14 @@ class ListRecipesService
       content_type: 'recipe'
     )
 
-    entries[:items].map do |entry|
+    entries.items.map do |item|
       recipe = Recipe.new(
-        contentful_id: entry[:sys][:id],
-        title: entry[:fields][:title]
+        contentful_id: item[:sys][:id],
+        title: item[:fields][:title]
       )
 
-      photo_id = entry[:fields][:photo][:sys][:id]
-      photo_asset = entries[:assets].select { |item| item[:sys][:id] == photo_id }.first
+      photo_id = item[:fields][:photo][:sys][:id]
+      photo_asset = entries.assets.select { |item| item[:sys][:id] == photo_id }.first
 
       recipe.photo = Photo.new(
         contentful_id: photo_id,
@@ -28,4 +28,3 @@ class ListRecipesService
     end
   end
 end
-

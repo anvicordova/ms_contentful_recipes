@@ -3,9 +3,9 @@
 class HttpClient
   def initialize(url:, params: {}, headers: {})
     @connection = Faraday.new(
-      url: url,
-      params: params,
-      headers: headers
+      url:,
+      params:,
+      headers:
     )
   end
 

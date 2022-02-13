@@ -26,10 +26,10 @@ module Contentful
         }
       )
 
-      {
+      Response.new(
         items: entries[:items],
         assets: entries[:includes][:Asset]
-      }
+      )
     end
   end
 end
