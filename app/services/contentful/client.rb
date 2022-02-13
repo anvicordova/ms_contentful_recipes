@@ -28,7 +28,7 @@ module Contentful
 
       Response.new(
         items: entries[:items],
-        assets: entries[:includes][:Asset]
+        assets: entries.dig(:includes, :Asset)
       )
     end
   end
