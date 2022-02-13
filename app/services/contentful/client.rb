@@ -27,7 +27,6 @@ module Contentful
     end
 
     def fetch(content_type:, selected_fields: [])
-      debugger
       @client.fetch(
         endpoint: 'entries',
         params: {
