@@ -17,7 +17,7 @@ class ResponseHandler
         title: item.dig(:fields, :title)
       )
 
-      recipe.photo = photo(item)
+      recipe.photo = photo(item:)
 
       recipes << recipe
     end
@@ -25,7 +25,7 @@ class ResponseHandler
 
   private
 
-  def photo(item)
+  def photo(item:)
     photo_id = item.dig(:fields, :photo, :sys, :id)
     photo_asset = @raw_response.assets.find { |asset| asset.dig(:sys, :id) == photo_id }
 
