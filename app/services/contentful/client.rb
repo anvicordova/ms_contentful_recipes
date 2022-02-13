@@ -18,17 +18,21 @@ module Contentful
     end
 
     def entries(content_type:, selected_fields: [])
-      entries = @client.fetch(
+      entries = fetch(content_type, selected_fields)
+
+      Response.new(
+        items: entries[:items],
+        assets: entries.dig(:includes, :Asset)
+      )
+    end
+
+    def fetch(content_type:, selected_fields: [])
+      @client.fetch(
         endpoint: 'entries',
         params: {
           content_type:,
           select: selected_fields.join('&')
         }
-      )
-
-      Response.new(
-        items: entries[:items],
-        assets: entries.dig(:includes, :Asset)
       )
     end
   end

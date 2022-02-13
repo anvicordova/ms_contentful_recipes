@@ -13,5 +13,8 @@ class HttpClient
     response = @connection.get(endpoint, params)
 
     JSON.parse(response.body, symbolize_names: true)
+  rescue Faraday::ConnectionFailed
+    # TODO: log error
+    {}
   end
 end

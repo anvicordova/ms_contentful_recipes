@@ -9,6 +9,8 @@ class ResponseHandler
   end
 
   def parse
+    return unless @raw_response.items.present?
+
     @raw_response.items.each do |item|
       recipe = Recipe.new(
         contentful_id: item.dig(:sys, :id),
