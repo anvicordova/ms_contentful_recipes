@@ -6,8 +6,8 @@ RSpec.describe Contentful::Client do
   subject { described_class.new }
 
   describe 'entries' do
-    it do
-      expect(subject.entries(content_type: 'recipe')).to eq([])
+    it 'returns a Contentful::Response' do
+      expect(subject.entries(content_type: 'recipe')).to be_a_kind_of(Contentful::Response)
     end
   end
 end
