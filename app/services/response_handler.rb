@@ -11,16 +11,11 @@ class ResponseHandler
   def parse
     @raw_response.items.each do |item|
       recipe = Recipe.new(
-        contentful_id: item[:sys][:id],
-        title: item[:fields][:title]
+        contentful_id: item.dig(:sys, :id),
+        title: item.dig(:fields, :title)
       )
 
-      photo = photo_asset(item)
-
-      recipe.photo = Photo.new(
-        contentful_id: photo[:photo_id],
-        url: "https:#{photo[:url]}"
-      )
+      recipe.photo = photo(item)
 
       recipes << recipe
     end
@@ -28,13 +23,13 @@ class ResponseHandler
 
   private
 
-  def photo_asset(item)
-    photo_id = item[:fields][:photo][:sys][:id]
-    photo_asset = @raw_response.assets.find { |asset| asset[:sys][:id] == photo_id }
+  def photo(item)
+    photo_id = item.dig(:fields, :photo, :sys, :id)
+    photo_asset = @raw_response.assets.find { |asset| asset.dig(:sys, :id) == photo_id }
 
-    {
-      photo_id:,
-      url: photo_asset[:fields][:file][:url]
-    }
+    Photo.new(
+      contentful_id: photo_id,
+      url: "https:#{photo_asset.dig(:fields, :file, :url)}"
+    )
   end
 end
