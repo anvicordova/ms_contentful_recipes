@@ -21,12 +21,28 @@ class ResponseHandler
 
       recipe.photo = photo(item:)
       recipe.chef = chef(item:)
+      recipe.tags = tags(item:)
 
       recipes << recipe
     end
   end
 
   private
+
+  def tags(item:)
+    tag_entries = item.dig(:fields, :tags) || []
+
+    tag_entries.map do |entry|
+      tag_id = entry.dig(:sys, :id) 
+
+      tag_entry = @raw_response.included_entries.find { |entry| entry.dig(:sys, :id) == tag_id }
+
+      Tag.new(
+        contentful_id: tag_id,
+        name:  tag_entry.dig(:fields, :name)
+      )
+    end
+  end
 
   def chef(item:)
     chef_id = item.dig(:fields, :chef, :sys, :id)
