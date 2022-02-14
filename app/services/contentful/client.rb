@@ -32,14 +32,6 @@ module Contentful
       )
     end
 
-    def entry(entry_id:)
-      entry = fetch(endpoint: "entries/#{entry_id}")
-
-      {
-        item: entry
-      }
-    end
-
     private
 
     def fetch(endpoint:, content_type:'', selected_fields: [], other_params:)
