@@ -20,12 +20,27 @@ class ResponseHandler
       )
 
       recipe.photo = photo(item:)
+      recipe.chef = chef(item:)
 
       recipes << recipe
     end
   end
 
   private
+
+  def chef(item:)
+    chef_id = item.dig(:fields, :chef, :sys, :id)
+    
+    return unless chef_id
+    
+    chef_entry = @raw_response.included_entries.find { |entry| entry.dig(:sys, :id) == chef_id }
+
+    Chef.new(
+      contentful_id: chef_id,
+      name: chef_entry.dig(:fields, :name)
+    )
+  end
+
 
   def photo(item:)
     photo_id = item.dig(:fields, :photo, :sys, :id)

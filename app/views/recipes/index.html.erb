@@ -5,6 +5,6 @@
       <%= image_tag recipe.photo.url, style: 'height:300px;width:auto'%>
     </div>
 
-    <%= link_to("Test", recipe_path(id: recipe.contentful_id)) %>
+    <%= link_to("Details", recipe_path(id: recipe.contentful_id)) %>
   </div>
 <% end %>
