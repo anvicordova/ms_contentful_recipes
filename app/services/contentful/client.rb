@@ -19,19 +19,8 @@ module Contentful
     end
 
     def entries(content_type:, selected_fields: [], other_params: {})
-      fetch(
-        endpoint: 'entries',
-        content_type:,
-        selected_fields:,
-        other_params:
-      )
-    end
-
-    private
-
-    def fetch(endpoint:, other_params:, content_type: '', selected_fields: [])
       @http_client.fetch(
-        endpoint:,
+        endpoint: 'entries',
         params: {
           content_type:,
           select: selected_fields.join('&')
