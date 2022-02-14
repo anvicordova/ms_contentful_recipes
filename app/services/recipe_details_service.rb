@@ -11,7 +11,7 @@ class RecipeDetailsService
       raw_response: @contentful_client.entries(
         content_type: 'recipe',
         other_params: {
-          "sys.id": @recipe_id
+          'sys.id': @recipe_id
         }
       )
     )

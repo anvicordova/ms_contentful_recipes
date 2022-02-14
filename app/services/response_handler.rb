@@ -19,52 +19,11 @@ class ResponseHandler
         description: item.dig(:fields, :description)
       )
 
-      recipe.photo = photo(item:)
-      recipe.chef = chef(item:)
-      recipe.tags = tags(item:)
+      recipe.photo = Builders::Photo.new(item:, raw_response: @raw_response).call
+      recipe.chef = Builders::Chef.new(item:, raw_response: @raw_response).call
+      recipe.tags = Builders::Tags.new(item:, raw_response: @raw_response).call
 
       recipes << recipe
     end
-  end
-
-  private
-
-  def tags(item:)
-    tag_entries = item.dig(:fields, :tags) || []
-
-    tag_entries.map do |entry|
-      tag_id = entry.dig(:sys, :id) 
-
-      tag_entry = @raw_response.included_entries.find { |entry| entry.dig(:sys, :id) == tag_id }
-
-      Tag.new(
-        contentful_id: tag_id,
-        name:  tag_entry.dig(:fields, :name)
-      )
-    end
-  end
-
-  def chef(item:)
-    chef_id = item.dig(:fields, :chef, :sys, :id)
-    
-    return unless chef_id
-    
-    chef_entry = @raw_response.included_entries.find { |entry| entry.dig(:sys, :id) == chef_id }
-
-    Chef.new(
-      contentful_id: chef_id,
-      name: chef_entry.dig(:fields, :name)
-    )
-  end
-
-
-  def photo(item:)
-    photo_id = item.dig(:fields, :photo, :sys, :id)
-    photo_asset = @raw_response.assets.find { |asset| asset.dig(:sys, :id) == photo_id }
-
-    Photo.new(
-      contentful_id: photo_id,
-      url: "https:#{photo_asset.dig(:fields, :file, :url)}"
-    )
   end
 end

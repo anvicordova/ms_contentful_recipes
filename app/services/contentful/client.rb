@@ -19,10 +19,10 @@ module Contentful
 
     def entries(content_type:, selected_fields: [], other_params: {})
       entries = fetch(
-        endpoint: "entries",
+        endpoint: 'entries',
         content_type:,
         selected_fields:,
-        other_params:,
+        other_params:
       )
 
       Response.new(
@@ -34,7 +34,7 @@ module Contentful
 
     private
 
-    def fetch(endpoint:, content_type:'', selected_fields: [], other_params:)
+    def fetch(endpoint:, other_params:, content_type: '', selected_fields: [])
       @client.fetch(
         endpoint:,
         params: {

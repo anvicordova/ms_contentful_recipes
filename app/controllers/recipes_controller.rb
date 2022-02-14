@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
     @recipe = ::RecipeDetailsService.new(recipe_id: permitted_params).call
   end
 
-  private 
+  private
 
   def permitted_params
     params.require(:id)
