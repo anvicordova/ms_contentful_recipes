@@ -12,13 +12,7 @@ class ResponseHandler
     return unless @raw_response.items.present?
 
     @raw_response.items.each do |item|
-      recipe = Recipe.new(
-        contentful_id: item.dig(:sys, :id),
-        title: item.dig(:fields, :title),
-        calories: item.dig(:fields, :calories),
-        description: item.dig(:fields, :description)
-      )
-
+      recipe = Builders::Recipe.new(item:, raw_response: @raw_response).call
       recipe.photo = Builders::Photo.new(item:, raw_response: @raw_response).call
       recipe.chef = Builders::Chef.new(item:, raw_response: @raw_response).call
       recipe.tags = Builders::Tags.new(item:, raw_response: @raw_response).call

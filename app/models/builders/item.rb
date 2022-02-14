@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Builders
-  class EntityBuilder
+  class Item
     def initialize(item:, raw_response:)
       @item = item
       @raw_response = raw_response

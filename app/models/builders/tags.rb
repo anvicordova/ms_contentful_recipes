@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Builders
-  class Tags < EntityBuilder
+  class Tags < Item
     def call
       tag_entries = @item.dig(:fields, :tags) || []
 

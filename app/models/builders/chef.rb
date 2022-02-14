@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Builders
-  class Chef < EntityBuilder
+  class Chef < Item
     def call
       chef_id = @item.dig(:fields, :chef, :sys, :id)
 
