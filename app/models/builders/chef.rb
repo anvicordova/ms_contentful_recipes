@@ -7,7 +7,7 @@ module Builders
 
       return unless chef_id
 
-      chef_entry = match_entry(entries: @raw_response.included_entries, id: chef_id)
+      chef_entry = match_entry(entries: @raw_response.dig(:includes, :Entry), id: chef_id)
 
       ::Chef.new(
         contentful_id: chef_id,

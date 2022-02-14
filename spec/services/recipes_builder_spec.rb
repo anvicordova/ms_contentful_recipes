@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ResponseHandler do
+RSpec.describe RecipesBuilder do
   subject do
     described_class.new(
       raw_response: Contentful::Client.new.entries(

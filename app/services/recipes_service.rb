@@ -6,16 +6,6 @@ class RecipesService
   end
 
   def call
-    response = @contentful_client.entries(content_type: 'recipe')
-
-    if response.success?
-      handler = ResponseHandler.new(
-        raw_response: response.data
-      )
-      handler.parse
-      handler.recipes
-    else
-      false
-    end
+    @contentful_client.entries(content_type: 'recipe')
   end
 end

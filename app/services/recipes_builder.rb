@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ResponseHandler
+class RecipesBuilder
   attr_reader :recipes
 
   def initialize(raw_response:)
@@ -9,9 +9,9 @@ class ResponseHandler
   end
 
   def parse
-    return unless @raw_response.items.present?
+    return unless @raw_response[:items].present?
 
-    @raw_response.items.each do |item|
+    @raw_response[:items].each do |item|
       recipe = Builders::Recipe.new(item:, raw_response: @raw_response).call
       recipe.photo = Builders::Photo.new(item:, raw_response: @raw_response).call
       recipe.chef = Builders::Chef.new(item:, raw_response: @raw_response).call

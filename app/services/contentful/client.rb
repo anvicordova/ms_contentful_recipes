@@ -9,38 +9,28 @@ module Contentful
     ].join
 
     def initialize
-      @client = ::HttpClient.new(
+      @http_client = ::HttpClient.new(
         url: BASE_PATH,
         headers: {
           Authorization: "Bearer #{ENV['CONTENTFUL_ACCESS_TOKEN']}"
-        }
+        },
+        response_handler: Contentful::ResponseHandler
       )
     end
 
     def entries(content_type:, selected_fields: [], other_params: {})
-      entries = fetch(
+      fetch(
         endpoint: 'entries',
         content_type:,
         selected_fields:,
         other_params:
       )
-
-      Response.new(
-        success: true,
-        data: OpenStruct.new(
-          items: entries[:items],
-          assets: entries.dig(:includes, :Asset),
-          included_entries: entries.dig(:includes, :Entry)
-        )
-      )
-    rescue HttpClient::Error => e
-      Response.new(success: false, error: e)
     end
 
     private
 
     def fetch(endpoint:, other_params:, content_type: '', selected_fields: [])
-      @client.fetch(
+      @http_client.fetch(
         endpoint:,
         params: {
           content_type:,

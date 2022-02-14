@@ -2,12 +2,18 @@
 
 class RecipesController < ApplicationController
   def index
-    @recipes = ::RecipesService.new.call
+    service_response = ::RecipesService.new.call
 
-    if @recipes
+    if service_response.success?
+      builder = RecipesBuilder.new(
+        raw_response: service_response.data
+      )
+      builder.parse
+      @recipes = builder.recipes
+
       render :index, status: :ok
     else
-      render template: 'errors/internal_server', status: :internal_server_error
+      render "errors/#{service_response.status}", status: service_response.status
     end
   end
 

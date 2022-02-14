@@ -2,12 +2,13 @@
 
 module Contentful
   class Response
-    attr_reader :data, :error
+    attr_reader :data, :error, :status
 
-    def initialize(success:, data: nil, error: nil)
+    def initialize(success:, status:, data: nil, error: nil)
       @success = success
       @data = data
       @error = error
+      @status = status
     end
 
     def success?

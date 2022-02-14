@@ -4,7 +4,7 @@ module Builders
   class Photo < Item
     def call
       photo_id = @item.dig(:fields, :photo, :sys, :id)
-      photo_asset = match_entry(entries: @raw_response.assets, id: photo_id)
+      photo_asset = match_entry(entries: @raw_response.dig(:includes, :Asset), id: photo_id)
 
       ::Photo.new(
         contentful_id: photo_id,
