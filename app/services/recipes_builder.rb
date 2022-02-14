@@ -19,5 +19,7 @@ class RecipesBuilder
 
       recipes << recipe
     end
+
+    recipes
   end
 end
