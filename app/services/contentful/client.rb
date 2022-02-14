@@ -17,8 +17,13 @@ module Contentful
       )
     end
 
-    def entries(content_type:, selected_fields: [])
-      entries = fetch(content_type:, selected_fields:)
+    def entries(content_type:, selected_fields: [], other_params: {})
+      entries = fetch(
+        endpoint: "entries",
+        content_type:,
+        selected_fields:,
+        other_params:,
+      )
 
       Response.new(
         items: entries[:items],
@@ -26,15 +31,23 @@ module Contentful
       )
     end
 
+    def entry(entry_id:)
+      entry = fetch(endpoint: "entries/#{entry_id}")
+
+      {
+        item: entry
+      }
+    end
+
     private
 
-    def fetch(content_type:, selected_fields: [])
+    def fetch(endpoint:, content_type:'', selected_fields: [], other_params:)
       @client.fetch(
-        endpoint: 'entries',
+        endpoint:,
         params: {
           content_type:,
           select: selected_fields.join('&')
-        }
+        }.merge(other_params)
       )
     end
   end

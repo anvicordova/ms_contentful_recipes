@@ -1,0 +1,6 @@
+<h1>Recipe: <%= @recipe.title %></h1>
+<p>Calories: <%=@recipe.calories %></p>
+<p><%=@recipe.description %></p>
+<div>
+  <%= image_tag @recipe.photo.url, style: 'height:300px;width:auto'%>
+</div>

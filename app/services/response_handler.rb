@@ -14,7 +14,9 @@ class ResponseHandler
     @raw_response.items.each do |item|
       recipe = Recipe.new(
         contentful_id: item.dig(:sys, :id),
-        title: item.dig(:fields, :title)
+        title: item.dig(:fields, :title),
+        calories: item.dig(:fields, :calories),
+        description: item.dig(:fields, :description)
       )
 
       recipe.photo = photo(item:)

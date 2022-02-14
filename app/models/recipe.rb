@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class Recipe
-  attr_accessor :title, :photo
+  attr_accessor :title, :photo, :contentful_id, :calories, :description
 
-  def initialize(contentful_id:, title:)
+  def initialize(contentful_id:, title:, calories: nil, description: nil)
     @contentful_id = contentful_id
     @title = title
+    @calories = calories
+    @description = description
   end
 end
