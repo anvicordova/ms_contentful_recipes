@@ -26,10 +26,15 @@ module Contentful
       )
 
       Response.new(
-        items: entries[:items],
-        assets: entries.dig(:includes, :Asset),
-        included_entries: entries.dig(:includes, :Entry)
+        success: true,
+        data: OpenStruct.new(
+          items: entries[:items],
+          assets: entries.dig(:includes, :Asset),
+          included_entries: entries.dig(:includes, :Entry)
+        )
       )
+    rescue HttpClient::Error => e
+      Response.new(success: false, error: e)
     end
 
     private

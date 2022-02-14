@@ -37,6 +37,6 @@ module App
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.exceptions_app = self.routes
+    config.exceptions_app = routes
   end
 end

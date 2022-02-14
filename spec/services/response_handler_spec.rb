@@ -7,7 +7,7 @@ RSpec.describe ResponseHandler do
     described_class.new(
       raw_response: Contentful::Client.new.entries(
         content_type: 'recipe'
-      )
+      ).data
     )
   end
 

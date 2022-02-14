@@ -2,12 +2,20 @@
 
 module Contentful
   class Response
-    attr_reader :items, :assets, :included_entries
+    attr_reader :data, :error
 
-    def initialize(items:, assets:, included_entries:)
-      @items = items
-      @assets = assets
-      @included_entries = included_entries
+    def initialize(success:, data: nil, error: nil)
+      @success = success
+      @data = data
+      @error = error
+    end
+
+    def success?
+      @success
+    end
+
+    def failure?
+      !@success
     end
   end
 end

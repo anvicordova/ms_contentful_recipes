@@ -3,6 +3,12 @@
 class RecipesController < ApplicationController
   def index
     @recipes = ::RecipesService.new.call
+
+    if @recipes
+      render :index, status: :ok
+    else
+      render template: 'errors/internal_server', status: :internal_server_error
+    end
   end
 
   def show
