@@ -12,14 +12,20 @@ class RecipesBuilder
     return unless @raw_response[:items].present?
 
     @raw_response[:items].each do |item|
-      recipe = Builders::Recipe.new(item:, raw_response: @raw_response).build
-      recipe.photo = Builders::Photo.new(item:, raw_response: @raw_response).build
-      recipe.chef = Builders::Chef.new(item:, raw_response: @raw_response).build
-      recipe.tags = Builders::Tags.new(item:, raw_response: @raw_response).build
+      recipe = build(item:, type: :Recipe)
+      recipe.photo = build(item:, type: :Photo)
+      recipe.chef = build(item:, type: :Chef)
+      recipe.tags = build(item:, type: :Tags)
 
       recipes << recipe
     end
 
     recipes
+  end
+
+  private
+
+  def build(item:, type:)
+    Builders.const_get(type.to_s).new(item:, raw_response: @raw_response).build
   end
 end
