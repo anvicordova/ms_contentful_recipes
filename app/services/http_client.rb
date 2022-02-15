@@ -18,7 +18,6 @@ class HttpClient
     begin
       response = @connection.get(endpoint, params)
       body = JSON.parse(response.body, symbolize_names: true)
-
     rescue Faraday::TimeoutError => e
       Rails.logger.error "Request Timeout: #{e}"
     end

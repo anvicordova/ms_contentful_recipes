@@ -44,7 +44,7 @@ RSpec.describe RecipesBuilder do
       it 'builds the chef' do
         VCR.use_cassette('recipe_with_chef') do
           subject.parse
-  
+
           expect(subject.recipes.first.chef).to have_attributes(
             name: 'Mark Zucchiniberg'
           )

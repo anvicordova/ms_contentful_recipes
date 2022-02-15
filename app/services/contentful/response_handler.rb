@@ -17,7 +17,7 @@ module Contentful
           error: 'Something went wrong',
           success: false
         )
-      elsif @body.dig(:sys, :id) == 'NotFound' || @body[:total] == 0
+      elsif @body.dig(:sys, :id) == 'NotFound' || (@body[:total]).zero?
         ::Contentful::Response.new(
           status: NOT_FOUND,
           error: 'Something went wrong',
