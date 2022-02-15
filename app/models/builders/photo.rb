@@ -4,6 +4,9 @@ module Builders
   class Photo < Item
     def build
       photo_id = @item.dig(:fields, :photo, :sys, :id)
+
+      return unless photo_id
+
       photo_asset = match_entry(entries: @raw_response.dig(:includes, :Asset), id: photo_id)
 
       ::Photo.new(

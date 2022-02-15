@@ -8,6 +8,8 @@ module Builders
       tag_entries.map do |entry|
         tag_id = entry.dig(:sys, :id)
 
+        next unless tag_id
+
         tag_entry = match_entry(entries: @raw_response.dig(:includes, :Entry), id: tag_id)
 
         Tag.new(
