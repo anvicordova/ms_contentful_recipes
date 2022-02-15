@@ -11,14 +11,13 @@ module Contentful
     end
 
     def handle
-      case @body.dig(:sys, :id)
-      when 'AccessTokenInvalid'
+      if @body.dig(:sys, :id) == 'AccessTokenInvalid'
         ::Contentful::Response.new(
           status: SERVER_ERROR,
           error: 'Something went wrong',
           success: false
         )
-      when 'NotFound'
+      elsif @body.dig(:sys, :id) == 'NotFound' || @body[:total] == 0
         ::Contentful::Response.new(
           status: NOT_FOUND,
           error: 'Something went wrong',
