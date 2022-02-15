@@ -5,6 +5,6 @@ class Chef
 
   def initialize(contentful_id:, name:)
     @contentful_id = contentful_id
-    @name = name
+    @name = name.strip
   end
 end
