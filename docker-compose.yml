@@ -5,8 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    depends_on:
-      - postgres
     expose:
       - 3000
     ports:
