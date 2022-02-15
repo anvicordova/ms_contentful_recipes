@@ -18,6 +18,7 @@ gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem "redcarpet"
 
 group :development, :test do
   gem 'factory_bot_rails'
