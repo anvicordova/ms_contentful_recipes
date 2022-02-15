@@ -1,10 +1,20 @@
-<% @recipes.each do |recipe| %>
-  <div>
-    <%= recipe.title %>
-    <div>
-      <%= image_tag recipe.photo.url, style: 'height:300px;width:auto'%>
-    </div>
+<style>
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+</style>
 
-    <%= link_to("Details", recipe_path(id: recipe.contentful_id)) %>
-  </div>
-<% end %>
+<h1>Recipes</h1>
+<div class="container">
+  <% @recipes.each do |recipe| %>
+    <div class="recipe-item">
+      <h2><%= recipe.title %></h2>
+      <div>
+        <%= image_tag recipe.photo.url, style: 'height:250px;width:auto'%>
+      </div>
+
+      <%= link_to("See details", recipe_path(id: recipe.contentful_id)) %>
+    </div>
+  <% end %>
+</div>
