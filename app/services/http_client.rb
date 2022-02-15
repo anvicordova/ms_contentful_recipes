@@ -19,7 +19,6 @@ class HttpClient
       # log
       # add rescues
     end
-
     @response_handler.new(body:).handle
   end
 end

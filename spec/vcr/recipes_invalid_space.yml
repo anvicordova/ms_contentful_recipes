@@ -2,13 +2,13 @@
 http_interactions:
 - request:
     method: get
-    uri: https://cdn.contentful.com/spaces/kk2bw5ojx476/environments/master/entries?content_type=recipe&select=
+    uri: https://cdn.contentful.com/spaces/invalid-space/environments/master/entries?content_type=recipe&select=
     body:
       encoding: US-ASCII
       string: ''
     headers:
       Authorization:
-      - Bearer invalid-token
+      - Bearer 7ac531648a1b5e1dab6c18b0979f822a5aad0fe5f1109829b8a197eb2be4b84c
       User-Agent:
       - Faraday v2.2.0
       Accept-Encoding:
@@ -17,13 +17,13 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 401
-      message: Unauthorized
+      code: 404
+      message: Not Found
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '202'
+      - '151'
       Access-Control-Allow-Headers:
       - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature
       Access-Control-Allow-Methods:
@@ -34,56 +34,44 @@ http_interactions:
       - Etag
       Access-Control-Max-Age:
       - '86400'
-      Cf-Environment-Id:
-      - master
-      Cf-Space-Id:
-      - kk2bw5ojx476
       Content-Type:
       - application/vnd.contentful.delivery.v1+json
       Contentful-Api:
       - cda
-      Etag:
-      - '"11425959457825523557"'
       Server:
       - Contentful
       X-Content-Type-Options:
       - nosniff
       X-Contentful-Region:
       - us-east-1
-      X-Contentful-Route:
-      - "/spaces/:space/environments/:environment/entries"
       Via:
       - 1.1 varnish, 1.1 varnish
-      Contentful-Cache:
-      - MISS
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 15 Feb 2022 14:53:00 GMT
+      - Tue, 15 Feb 2022 15:31:22 GMT
       Age:
-      - '69667'
+      - '0'
       X-Served-By:
-      - cache-iad-kiad7000142-IAD, cache-bma1665-BMA
+      - cache-iad-kjyo7100106-IAD, cache-bma1622-BMA
       X-Cache-Hits:
-      - 0, 1
+      - 0, 0
       X-Timer:
-      - S1644936780.306173,VS0,VE1
-      Vary:
-      - Accept-Encoding
+      - S1644939082.330956,VS0,VE104
       X-Cache:
-      - HIT
+      - MISS
       X-Contentful-Request-Id:
-      - 93fa0b83-eef6-451c-9563-e21c8617e8fd
+      - 7b7aa499-ccca-40b8-967a-90d0e2d2d7ce
     body:
-      encoding: UTF-8
+      encoding: ASCII-8BIT
       string: |
         {
           "sys": {
             "type": "Error",
-            "id": "AccessTokenInvalid"
+            "id": "NotFound"
           },
-          "message": "The access token you sent could not be found or is invalid.",
-          "requestId": "5149bd6b-31f9-4601-bc40-32c1ccef8353"
+          "message": "The resource could not be found.",
+          "requestId": "7b7aa499-ccca-40b8-967a-90d0e2d2d7ce"
         }
-  recorded_at: Tue, 15 Feb 2022 14:53:00 GMT
+  recorded_at: Tue, 15 Feb 2022 15:31:22 GMT
 recorded_with: VCR 6.0.0

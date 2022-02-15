@@ -32,3 +32,7 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rubocop', require: false
 end
+
+group :test do
+  gem 'climate_control'
+end

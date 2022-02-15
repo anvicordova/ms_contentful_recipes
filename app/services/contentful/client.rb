@@ -4,8 +4,8 @@ module Contentful
   class Client
     BASE_PATH = [
       ENV['CONTENTFUL_API_BASE_URL'],
-      "/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/",
-      "environments/#{ENV['CONTENTFUL_ENVIRONMENT_ID']}/"
+      '/spaces/', ENV['CONTENTFUL_SPACE_ID'],
+      '/environments/', ENV['CONTENTFUL_ENVIRONMENT_ID'], '/'
     ].join
 
     def initialize

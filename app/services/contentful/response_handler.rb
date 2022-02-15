@@ -2,7 +2,7 @@
 
 module Contentful
   class ResponseHandler
-    NOT_FOUND = 404
+    NOT_FOUND = :not_found
     SERVER_ERROR = :internal_server_error
     SUCCESS = 200
 
@@ -15,6 +15,12 @@ module Contentful
       when 'AccessTokenInvalid'
         ::Contentful::Response.new(
           status: SERVER_ERROR,
+          error: 'Something went wrong',
+          success: false
+        )
+      when 'NotFound'
+        ::Contentful::Response.new(
+          status: NOT_FOUND,
           error: 'Something went wrong',
           success: false
         )
