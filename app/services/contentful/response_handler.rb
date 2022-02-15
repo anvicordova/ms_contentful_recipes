@@ -4,7 +4,7 @@ module Contentful
   class ResponseHandler
     NOT_FOUND = :not_found
     SERVER_ERROR = :internal_server_error
-    SUCCESS = 200
+    SUCCESS = :ok
 
     def initialize(body:)
       @body = body
