@@ -2,7 +2,7 @@
 
 module Builders
   class Chef < Item
-    def call
+    def build
       chef_id = @item.dig(:fields, :chef, :sys, :id)
 
       return unless chef_id

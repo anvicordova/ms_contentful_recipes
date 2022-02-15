@@ -2,7 +2,7 @@
 
 module Builders
   class Recipe < Item
-    def call
+    def build
       ::Recipe.new(
         contentful_id: @item.dig(:sys, :id),
         title: @item.dig(:fields, :title),

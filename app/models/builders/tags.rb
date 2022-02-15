@@ -2,7 +2,7 @@
 
 module Builders
   class Tags < Item
-    def call
+    def build
       tag_entries = @item.dig(:fields, :tags) || []
 
       tag_entries.map do |entry|
